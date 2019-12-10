@@ -5,8 +5,10 @@ import {
   Dimensions,
   Image,
   View,
+  ActivityIndicator,
   Text
 } from 'react-native';
+import { normalize } from '../helpers/normalizeFontSize';
 
 const { width } = Dimensions.get('window');
 
@@ -24,10 +26,10 @@ const styles = StyleSheet.create({
     marginRight: 10
   },
   title: {
-    fontSize: 10
+    fontSize: normalize(10)
   },
   subtitle: {
-    fontSize: 14
+    fontSize: normalize(14)
   }
 });
 
@@ -49,14 +51,19 @@ const Badge = ({ navigation, badge, size, titled }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('CloudCerts', { uri: cloudcerts })}>
-        <Image
-          source={{ uri: image }}
-          style={[
-            styles.badge,
-            { width: width * size * 0.1, height: width * size * 0.1 }
-          ]}
-        />
+        onPress={() => navigation.navigate('CloudCerts', { uri: cloudcerts })}
+      >
+        {
+          image ? (
+            <Image
+              source={{ uri: image }}
+              style={[
+                styles.badge,
+                { width: width * size * 0.075, height: width * size * 0.075 }
+              ]}
+            />
+          ) : <ActivityIndicator size="small" color="#00CED6" />
+        }
       </TouchableOpacity>
       {showTitle(titled, title, subtitle)}
     </View>

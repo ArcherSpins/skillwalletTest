@@ -5,8 +5,10 @@ import {
   Image,
   ImageBackground,
   Dimensions,
+  ActivityIndicator,
   View
 } from 'react-native';
+import { normalize } from '../helpers/normalizeFontSize';
 
 const { width, height } = Dimensions.get('window');
 
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: '100%',
     height: '50%',
-    marginBottom: '5%'
+    marginBottom: normalize(85)
   },
   profileImage: {
     width: width * 0.3,
@@ -38,14 +40,14 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   nameText: {
-    fontSize: 22
+    fontSize: normalize(22)
   },
   accountText: {
-    fontSize: 14,
+    fontSize: normalize(14),
     color: '#666666'
   },
   organizationText: {
-    fontSize: 16,
+    fontSize: normalize(16),
     color: '#00CED6',
     fontWeight: '500'
   }
@@ -65,11 +67,15 @@ const Profile = ({ flexRatio, profile }) => {
         style={styles.backgroundImage}
         imageStyle={{ width: '100%', height: 'auto' }}
       />
-      <Image
-        style={styles.profileImage}
-        source={{ uri: image }}
-        resizeMode='cover'
-      />
+      {
+        image ? (
+          <Image
+            style={styles.profileImage}
+            source={{ uri: image }}
+            resizeMode='cover'
+          />
+        ) : <ActivityIndicator size="large" color="#00CED6" />
+      }
       <View style={styles.textWrapper}>
         <Text style={styles.nameText}>{name}</Text>
         <Text style={styles.accountText}>{account}</Text>

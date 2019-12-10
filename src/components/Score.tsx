@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { sum } from '../lib/tools';
+import { normalize } from '../helpers/normalizeFontSize';
 
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    paddingTop: 20,
     justifyContent: 'space-evenly',
     flexDirection: 'row',
     paddingHorizontal: 10,
@@ -18,23 +20,23 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   titleText: {
-    fontSize: 20
+    fontSize: normalize(20)
   },
   scoreText: {
-    fontSize: 30,
+    fontSize: normalize(30),
     color: '#00CED6',
     fontWeight: '600',
-    height: 40
+    height: normalize(40)
   },
   scoreSubtext: {
-    fontSize: 20,
+    fontSize: normalize(20),
     color: '#00CED6',
     fontWeight: '600'
   },
   toChart: {
     backgroundColor: '#00CED6',
     color: 'white',
-    fontSize: 15,
+    fontSize: normalize(15),
     padding: 3
   }
 });
